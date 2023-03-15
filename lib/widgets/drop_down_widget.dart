@@ -1,10 +1,7 @@
-import 'package:chatgpt/constant/app_color.dart';
-import 'package:chatgpt/services/api_service.dart';
-import 'package:chatgpt/store/model_provider.dart';
-import 'package:chatgpt/widgets/text_widget.dart';
+import '/constant/app_color.dart';
+import '/store/model_provider.dart';
+import '/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:provider/provider.dart';
 
 class DropDownWidget extends StatefulWidget {

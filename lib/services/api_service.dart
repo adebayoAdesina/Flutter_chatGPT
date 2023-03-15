@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:chatgpt/models/base_model.dart';
-import 'package:chatgpt/models/chat_model.dart';
+import '/models/base_model.dart';
+import '/models/chat_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 

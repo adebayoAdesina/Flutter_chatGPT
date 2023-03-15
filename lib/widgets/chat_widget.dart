@@ -1,7 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:chatgpt/constant/app_color.dart';
-import 'package:chatgpt/constant/app_image.dart';
-import 'package:chatgpt/widgets/text_widget.dart';
+import '/constant/app_color.dart';
+import '/constant/app_image.dart';
+import '/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 class ChatWidget extends StatelessWidget {

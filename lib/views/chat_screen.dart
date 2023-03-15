@@ -1,10 +1,10 @@
-import 'package:chatgpt/constant/app_color.dart';
-import 'package:chatgpt/constant/app_image.dart';
-import 'package:chatgpt/models/chat_model.dart';
-import 'package:chatgpt/services/api_service.dart';
-import 'package:chatgpt/store/model_provider.dart';
-import 'package:chatgpt/util/utils.dart';
-import 'package:chatgpt/widgets/chat_widget.dart';
+import '/constant/app_color.dart';
+import '/constant/app_image.dart';
+import '/models/chat_model.dart';
+import '/services/api_service.dart';
+import '/store/model_provider.dart';
+import '/util/utils.dart';
+import '/widgets/chat_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
             AppImages.openAiLogoColored,
           ),
         ),
-        title: const Text('chatGPT'),
+        title: const Text('ChatGPT'),
       ),
       body: SafeArea(
           child: Column(

@@ -1,8 +1,8 @@
-import 'package:chatgpt/widgets/drop_down_widget.dart';
+import '/widgets/drop_down_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../constant/app_color.dart';
-import '../widgets/text_widget.dart';
+import '/constant/app_color.dart';
+import '/widgets/text_widget.dart';
 
 class Utils {
   static Future<void> showModelSheet(context) async {
