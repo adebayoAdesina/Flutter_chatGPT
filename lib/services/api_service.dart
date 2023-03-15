@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:chatgpt/models/base_model.dart';
 import 'package:chatgpt/models/chat_model.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../api/api.dart';
@@ -29,6 +30,7 @@ class ApiService {
   static Future<List<ChatModel>> sendMessage(
     String message,
     String modelId,
+    BuildContext context,
   ) async {
     try {
       var response = await http.post(Uri.parse('$BASE_URL/completions'),
@@ -61,7 +63,16 @@ class ApiService {
       }
       return chatList;
     } catch (e) {
-      print(e.toString());
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          e.toString(),
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.red,
+      ));
+      ;
       rethrow;
     }
   }

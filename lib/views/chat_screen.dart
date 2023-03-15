@@ -17,7 +17,7 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-  bool _isTyping = true;
+  bool _isTyping = false;
   TextEditingController? _controller;
   late FocusNode focusNode;
   late ScrollController _listScroll;
@@ -114,6 +114,32 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                   IconButton(
                     onPressed: () async {
+                      if (_controller!.text.isEmpty) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                            'Please type a message',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          backgroundColor: Colors.red,
+                        ));
+                        return;
+                      }
+                      if (_isTyping) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                            'You cant send multiple messages at a time.',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          backgroundColor: Colors.red,
+                        ));
+                        return;
+                      }
                       await sendMessages(_controller!.text,
                           context.read<ModelProvider>().getCurrentModel);
                     },
@@ -140,25 +166,28 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> sendMessages(String text, modelProvider) async {
+    String msg = text;
     try {
       setState(() {
         _isTyping = true;
         chatList.add(ChatModel(
           chatIndex: 0,
-          msg: text,
+          msg: msg,
         ));
         _controller!.clear();
         focusNode.unfocus();
       });
       chatList.addAll(await ApiService.sendMessage(
-        text,
+        msg,
         modelProvider,
+        context,
       ));
       setState(() {});
     } catch (e) {
       print('error $e');
     } finally {
       setState(() {
+        scrollListToEnd();
         _isTyping = false;
       });
     }

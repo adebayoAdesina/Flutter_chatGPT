@@ -1,9 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:chatgpt/constant/app_color.dart';
 import 'package:chatgpt/constant/app_image.dart';
 import 'package:chatgpt/widgets/text_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class ChatWidget extends StatelessWidget {
   const ChatWidget({super.key, required this.msg, required this.chatIndex});
@@ -25,7 +24,7 @@ class ChatWidget extends StatelessWidget {
               children: [
                 chatIndex == 0
                     ? Image.asset(
-                        AppImages.aiImage,
+                        AppImages.chatImage,
                         width: 30,
                         height: 30,
                       )
@@ -38,11 +37,30 @@ class ChatWidget extends StatelessWidget {
                   width: 8,
                 ),
                 Expanded(
-                  child: TextWidget(
-                    label: msg,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  child: chatIndex == 0
+                      ? TextWidget(
+                          label: msg,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        )
+                      : DefaultTextStyle(
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18,
+                          ),
+                          child: AnimatedTextKit(
+                            isRepeatingAnimation: false,
+                            repeatForever: false,
+                            displayFullTextOnTap: true,
+                            totalRepeatCount: 1,
+                            animatedTexts: [
+                              TyperAnimatedText(
+                                msg.trim(),
+                              ),
+                            ],
+                          ),
+                        ),
                 ),
                 chatIndex == 0
                     ? const SizedBox.shrink()
